@@ -1,8 +1,15 @@
+import { useState } from "react";
+
+const Child = ({state,action}:any) => {
+  return <button type="button" onClick={action}>{state}</button>
+}
+
 const App = () => {
+  const [number,setNumber]=useState(0);
+  const increase = () => setNumber(number+1);
+
   return(
-    <>
-      <h1>여기는 쇼핑몰입니다.</h1>
-    </>
+    <Child state={number} action={increase}/>
   );
 }
 

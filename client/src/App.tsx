@@ -1,25 +1,14 @@
-import { useState } from "react";
-
-const Child = ({state}:any) => {
-  return <button type="button">{state}</button>
-};
+import { Route, Routes } from "react-router-dom";
+//import HomePage from "./pages/HomePage";
+import {HomePage,ProductPage} from "./pages";
 
 const App = () => {
-  const [number1,setNumber1]=useState(0);
-  const [number2,setNumber2]=useState(0);
-
-  const HandleChange = () => {
-    setNumber1((prev)=>prev+2);
-    setNumber2((prev)=>prev+3);
-  };
-
-  return(
-    <div>
-      <Child state={number1} />
-      <Child state={number2} />
-      <button onClick={HandleChange}>Change</button>
-    </div>
-  );
-};
+  return (
+    <Routes>
+      <Route index element={<HomePage />}/>
+      <Route path="/:productId" element={<ProductPage />} />
+    </Routes>
+  )
+}
 
 export default App;

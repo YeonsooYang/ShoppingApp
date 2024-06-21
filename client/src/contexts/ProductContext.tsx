@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { ProductType } from "../interface";
+import { ProductType } from "../types";
 
 type ProductContextType =[
     ProductType[],

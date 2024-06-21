@@ -1,14 +1,10 @@
 
 import { useEffect, useState } from "react";
-import { useProductContext } from "../contexts/ProductContext";
 import { useParams } from "react-router-dom";
-import { ProductType } from "../interface";
+import { ProductType } from "../types";
 
 const ProductPage = () => {
     const {productId} = useParams<{ productId: string }>();
-    //const context = useProductContext();
-    //const [products] = useProductContext();
-    //const foundProduct = products.find((product)=> product.id === parseInt(productId!,10));
     const [product,setProduct] = useState<ProductType | null>(null); 
 
     useEffect(()=>{

@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductType } from "../types";
+import { API_SERVER_DOMAIN } from "../constants";
+import { Box } from "@mui/material";
 
 const ProductPage = () => {
     const {productId} = useParams<{ productId: string }>();
@@ -18,6 +20,15 @@ const ProductPage = () => {
     }
     return(
         <div>
+            <Box sx={{display:"flex",justifyContent:"center",mb:4}}>
+                {product?.thumbnail && (
+                    <img 
+                        src={`${API_SERVER_DOMAIN}/${product.thumbnail}`}
+                        alt={product?.name}
+                        style={{width: "100%", maxWidth:400}}
+                    />
+                )}
+            </Box>
             <h1>{product?.name}상세페이지</h1>
             <p>{product?.explanation}</p>
             <span>{product?.price}원</span>

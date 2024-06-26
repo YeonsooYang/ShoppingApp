@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProductItemProps } from "../../types";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import { API_SERVER_DOMAIN } from "../../constants";
 
 const ProductItem = ({product}:ProductItemProps) => {
@@ -18,7 +18,8 @@ const ProductItem = ({product}:ProductItemProps) => {
 
     return(
         <Grid item xs={12} sm={6} md={4}>
-            <Card sx={{maxWidth:345, padding:3, height:300}} onClick={handlePushProductPage}>
+            <Card sx={{ maxWidth:345, padding:3, height:300}} 
+            onClick={handlePushProductPage}>
                {product.thumbnail && (
                     <CardMedia 
                     sx={{height:140}}
@@ -26,7 +27,7 @@ const ProductItem = ({product}:ProductItemProps) => {
                     title={product.name}
                     />
                )}
-                
+
                 <CardContent sx={{padding:0}}>
                     <Typography
                         gutterBottom

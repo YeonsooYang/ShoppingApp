@@ -1,13 +1,21 @@
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ProductType } from "../types";
 import { API_SERVER_DOMAIN } from "../constants";
-import { Box } from "@mui/material";
+import { Box, Button, ButtonGroup, Typography } from "@mui/material";
+import { Delete, Edit } from "@mui/icons-material";
 
 const ProductPage = () => {
+    const navigate = useNavigate();
     const {productId} = useParams<{ productId: string }>();
     const [product,setProduct] = useState<ProductType | null>(null); 
+
+    const handlePushPurchasePage = () => {
+        if(productId){
+            navigate(`/purchase/${productId}`)
+        }
+    }
 
     useEffect(()=>{
         fetch(`/product/${productId}`)
@@ -29,9 +37,47 @@ const ProductPage = () => {
                     />
                 )}
             </Box>
-            <h1>{product?.name}상세페이지</h1>
-            <p>{product?.explanation}</p>
-            <span>{product?.price}원</span>
+            <Box sx={{
+                display:'flex', 
+                alignItems:'center',
+                justifyContent:'space-between',
+                marginBottom:2
+                }}>
+                    <Typography variant="h4" sx={{fontWeight:'bold'}}>
+                        {product?.name}
+                    </Typography>
+                    <ButtonGroup orientation="horizontal">
+                        <Button
+                            variant="text"
+                            onClick={()=>null}
+                            color="error"
+                            >
+                                <Delete/>
+                        </Button>
+                        <Button
+                            variant="text"
+                            onClick={()=>null}
+                            color="info"
+                            >
+                                <Edit/>
+                        </Button>
+                    </ButtonGroup>
+            </Box>
+            <Typography variant="h6" sx={{marginBottom:4}}> 
+                {product?.price.toLocaleString('KO-kr')}원
+            </Typography>
+            <Typography variant="body1" sx={{marginBottom:4}}>
+                {product?.explanation}
+            </Typography>
+
+            <ButtonGroup orientation="horizontal" fullWidth>
+                <Button variant="outlined">
+                    장바구니 담기
+                </Button>
+                <Button variant="contained" onClick={handlePushPurchasePage}>
+                    구매하기
+                </Button>
+            </ButtonGroup>
         </div>
         
     );

@@ -8,7 +8,7 @@ const ProductList = () => {
     const [isLoading, setIsLoading] = useState(false);
 
 
-/*삭제*/
+// /*삭제*/
 // const handleDelete=(id:string) =>{
 //     fetch(`/product/${id}`,{
 //         method: 'DELETE',
@@ -38,14 +38,14 @@ const ProductList = () => {
 
 useEffect(()=>{
     setIsLoading(true);
-
+    
     fetch('/product')
     .then((response)=>response.json())
     .then((data)=>setProducts(data.products))
     .finally(()=>setIsLoading(false))
 },[]);
 
-if (isLoading) return <CircularProgress />;
+if (isLoading) return (<CircularProgress sx={{position:"fixed",left:"50%",top:"50%"}}/>);
 
 return (
     <Grid container spacing={3}>
